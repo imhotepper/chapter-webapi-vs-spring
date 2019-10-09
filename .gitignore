@@ -1,0 +1,10 @@
+.DS_Store
+
+webapi/.idea/
+webapi/.vs
+
+webapi/api/bin
+webapi/api/obj
+
+webapi/tests/bin
+webapi/tests/obj
