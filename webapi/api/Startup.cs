@@ -11,10 +11,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.OpenApi.Models;
+
 
 namespace api
 {
@@ -33,6 +36,12 @@ namespace api
             
             services.AddScoped<TodosService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            
+            // Register the Swagger generator, defining 1 or more Swagger documents
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Todos API", Version = "v1" });
+            });
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -54,13 +63,31 @@ namespace api
                 Console.WriteLine("--------------------------------");
                 Console.WriteLine("My process used working set {0:n3} MB of working set and CPU {1:n} msec", mem / (1024.0 * 1000) , cpu.TotalMilliseconds);
                 Console.WriteLine("--------------------------------");
-
-//                foreach (var aProc in Process.GetProcesses().ToList().Where(x=>x.ProcessName == "dotnet"))
-//                    Console.WriteLine("Proc {0,30}  CPU {1,-20:n} msec", aProc.ProcessName, cpu.TotalMilliseconds, cpu.m);
             });
             
 
             app.UseMvc();
+
+              // update database schema           
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                if (serviceScope.ServiceProvider.GetService<AppDb>() == null) return;
+                var ctx = serviceScope.ServiceProvider.GetService<AppDb>();
+                new DatabaseFacade(ctx).Migrate();
+            }
+            
+            // Enable middleware to serve generated Swagger as a JSON endpoint.
+                app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
+            // specifying the Swagger JSON endpoint.
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todos API V1");
+                c.RoutePrefix = string.Empty;
+
+            });
+
         }
     }
 }
