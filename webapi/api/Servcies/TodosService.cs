@@ -22,7 +22,7 @@ namespace api.Servcies
             _db.SaveChanges();
         }
         
-        public void Update(int id,Todo todo)
+        public Todo Update(int id,Todo todo)
         {
             var td = _db.Todos.FirstOrDefault(x => x.Id == id);
             if (td != null)
@@ -31,6 +31,7 @@ namespace api.Servcies
                 td.IsCompleted = todo.IsCompleted;
                 _db.SaveChanges();
             }
+            return td;
         }
 
         public void Delete(int id)

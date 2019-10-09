@@ -38,8 +38,8 @@ namespace api.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody]Todo todo)
         {
-            _service.Update(id,todo);
-            return NoContent();
+            var td = _service.Update(id,todo);
+            return Ok(td);
         }
 
         // DELETE api/todos/5
@@ -47,7 +47,7 @@ namespace api.Controllers
         public ActionResult Delete(int id)
         {
             _service.Delete(id);
-            return NoContent();
+            return Accepted();
         }
     }
 }

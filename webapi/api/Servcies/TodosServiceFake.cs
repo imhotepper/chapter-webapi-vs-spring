@@ -18,7 +18,7 @@ namespace api.Servcies
             _todos.Add(todo);
         }
         
-        public void Update(int id,Todo todo)
+        public Todo Update(int id,Todo todo)
         {
             var td = _todos.FirstOrDefault(x => x.Id == id);
             if (td != null)
@@ -26,6 +26,7 @@ namespace api.Servcies
                 td.Title = todo.Title;
                 td.IsCompleted = todo.IsCompleted;
             }
+            return td;
         }
         public void Delete(int id) =>
             _todos.Remove(_todos.Single(x => x.Id == id));
