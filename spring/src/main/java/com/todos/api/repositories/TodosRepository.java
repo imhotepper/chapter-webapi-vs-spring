@@ -1,4 +1,8 @@
 package com.todos.api.repositories;
 
-public class TodosRepository {
+import com.todos.api.models.Todo;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TodosRepository extends JpaRepository<Todo,Integer> {
 }
+
