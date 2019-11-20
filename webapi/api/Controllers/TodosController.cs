@@ -30,7 +30,9 @@ namespace api.Controllers
         [HttpPost]
         public ActionResult Post([FromBody]Todo todo)
         {
-             _service.Create(todo);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            _service.Create(todo);
             return Created("", todo);
         }
 
@@ -38,7 +40,7 @@ namespace api.Controllers
         [HttpPut("{id}")]
         public ActionResult Put(int id, [FromBody]Todo todo)
         {
-            var td = _service.Update(id,todo);
+            var td = _service.Update(id, todo);
             return Ok(td);
         }
 

@@ -31,6 +31,7 @@ public class TodosService {
         if (td.isPresent()){
             td.get().setCompleted(todo.isCompleted());
             td.get().setTitle(todo.getTitle());
+            _db.saveAndFlush(td.get());
         }
         return td.get();
     }
@@ -39,3 +40,4 @@ public class TodosService {
         _db.deleteById(id);
     }
 }
+

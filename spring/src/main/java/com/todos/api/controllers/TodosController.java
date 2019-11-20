@@ -29,7 +29,7 @@ public class TodosController {
     }
 
     @PostMapping(value = "/api/todos")
-    public ResponseEntity<?> post(@RequestBody Todo todo){
+    public ResponseEntity<?> post(@Valid @RequestBody Todo todo){
         _service.create(todo);
         return  ResponseEntity.created(null).body(todo);
     }
