@@ -51,5 +51,8 @@ namespace api.Controllers
             _service.Delete(id);
             return Accepted();
         }
+
+        [HttpGet("exception")]
+        public ActionResult Exception(){throw new TodoException("Custom TODO exception");}
     }
 }

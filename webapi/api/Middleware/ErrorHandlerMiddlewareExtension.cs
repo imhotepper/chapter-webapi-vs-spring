@@ -29,7 +29,7 @@ namespace api.Middleware
                         await context.Response.WriteAsync(
                             JsonConvert.SerializeObject(new {
                                             StatusCode = (int)context.Response.StatusCode,
-                                            Message = "Internal Server Error."
+                                            Message =  contextFeature.Error.Message
                                         })
                             );
                     }

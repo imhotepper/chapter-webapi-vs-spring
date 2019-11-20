@@ -1,6 +1,7 @@
 package com.todos.api.controllers;
 
 import com.sun.jndi.toolkit.url.Uri;
+import com.todos.api.exceptions.TodoException;
 import com.todos.api.models.Todo;
 import com.todos.api.services.TodosService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,10 @@ public class TodosController {
     public ResponseEntity<?> delete(@PathVariable Integer id){
         _service.delete(id);
        return ResponseEntity.accepted().build();
+    }
+
+    @GetMapping(value = "/api/todos/exception")
+    public ResponseEntity exception(){
+        throw new TodoException("Custom TODO exception");
     }
 }
