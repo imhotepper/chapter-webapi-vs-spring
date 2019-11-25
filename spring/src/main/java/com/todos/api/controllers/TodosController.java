@@ -1,11 +1,9 @@
 package com.todos.api.controllers;
 
-import com.sun.jndi.toolkit.url.Uri;
 import com.todos.api.exceptions.TodoException;
 import com.todos.api.models.Todo;
 import com.todos.api.services.TodosService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +12,7 @@ import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
-//@RequestMapping()
+//@RequestMapping("/api")
 public class TodosController {
 
     @Autowired
@@ -22,11 +20,11 @@ public class TodosController {
 
     @GetMapping(value = "/api/todos")
     public ResponseEntity< List<Todo>> get(){
-        return  ResponseEntity.ok(  _service.GetAll());
+        return  ResponseEntity.ok(  _service.getAll());
     }
     @GetMapping(value = "/api/todos/{id}")
     public ResponseEntity<?> get(@PathVariable Integer id){
-        return  ResponseEntity.ok(_service.Get(id));
+        return  ResponseEntity.ok(_service.get(id));
     }
 
     @PostMapping(value = "/api/todos")

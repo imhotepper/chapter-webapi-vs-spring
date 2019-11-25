@@ -16,8 +16,8 @@ public class TodosService {
         _db = repository;
     }
 
-    public List<Todo> GetAll(){ return _db.findAll();}
-    public Optional<Todo> Get(int id){
+    public List<Todo> getAll(){ return _db.findAll();}
+    public Optional<Todo> get(int id){
         return _db.findById(id);}
 
     public Todo create(Todo todo) {
