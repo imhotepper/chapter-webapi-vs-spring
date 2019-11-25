@@ -4,6 +4,7 @@ package com.todos.api.models;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Length;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -17,7 +18,7 @@ public class Todo {
     @Id @GeneratedValue
     private int Id;
     @NotNull
-    @Max(value = 250,message = "Max length allowed is 250")
+    @Length(min = 2,message = "Min length allowed is 2")
     private String title;
     private boolean isCompleted;
 }
