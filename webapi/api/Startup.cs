@@ -31,12 +31,17 @@ namespace api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDb>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            
+            var conStr = Configuration.GetConnectionString("DefaultConnection");
+            var pgConn = Environment.GetEnvironmentVariable("DATABASE_URL");
+
+            if (!string.IsNullOrWhiteSpace(pgConn))
+                conStr = HerokuPGParser.ConnectionHelper.BuildExpectedConnectionString(pgConn);
+
+            services.AddDbContext<AppDb>(options =>options.UseNpgsql(conStr));
+
             services.AddScoped<TodosService>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            
+
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
@@ -46,7 +51,7 @@ namespace api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            
+
             if (env.IsDevelopment())
                 app.UseDeveloperExceptionPage();
 
@@ -61,23 +66,23 @@ namespace api
                 var mem = proc.WorkingSet64;
                 var cpu = proc.TotalProcessorTime;
                 Console.WriteLine("--------------------------------");
-                Console.WriteLine("My process used working set {0:n3} MB of working set and CPU {1:n} msec", mem / (1024.0 * 1000) , cpu.TotalMilliseconds);
+                Console.WriteLine("My process used working set {0:n3} MB of working set and CPU {1:n} msec", mem / (1024.0 * 1000), cpu.TotalMilliseconds);
                 Console.WriteLine("--------------------------------");
             });
-            
+
 
             app.UseMvc();
 
-              // update database schema           
+            // update database schema           
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 if (serviceScope.ServiceProvider.GetService<AppDb>() == null) return;
                 var ctx = serviceScope.ServiceProvider.GetService<AppDb>();
                 new DatabaseFacade(ctx).Migrate();
             }
-            
+
             // Enable middleware to serve generated Swagger as a JSON endpoint.
-                app.UseSwagger();
+            app.UseSwagger();
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.),
             // specifying the Swagger JSON endpoint.

@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="HerokuPGParser" Version="1.0.2" />
     <PackageReference Include="Microsoft.AspNetCore.App">
       <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
       <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
@@ -27,4 +28,8 @@
     <_ContentIncludedByDefault Remove="tests\obj\project.packagespec.json" />
     <_ContentIncludedByDefault Remove="tests\obj\tests.csproj.nuget.dgspec.json" />
   </ItemGroup>
+
+  <Target Name="PrePublishTarget" AfterTargets="Publish">
+    <Exec Command="dotnet ef database update" />
+  </Target>
 </Project>
