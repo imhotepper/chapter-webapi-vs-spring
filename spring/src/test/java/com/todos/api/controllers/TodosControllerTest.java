@@ -32,7 +32,9 @@ public class TodosControllerTest {
 
     @Test
    public void ca_call_get() throws Exception {
-        Todo todo =  Todo.builder() .Id(1).title("first todo").build();
+        Todo todo = new Todo();//.builder() 
+        todo.setId(1);
+        todo.setTitle("first todo");
         List<Todo> todos = Arrays.asList(todo);
         given(service.getAll()).willReturn(todos);
         mvc.perform(get("/api/todos")

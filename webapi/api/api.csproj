@@ -29,7 +29,7 @@
     <_ContentIncludedByDefault Remove="tests\obj\tests.csproj.nuget.dgspec.json" />
   </ItemGroup>
 
-  <Target Name="PrePublishTarget" AfterTargets="Publish">
+  <!-- <Target Name="PrePublishTarget" AfterTargets="Publish">
     <Exec Command="dotnet ef database update" />
-  </Target>
+  </Target> -->
 </Project>
