@@ -1,0 +1,32 @@
+version: "3"
+services:
+    db:
+        image: "postgres"
+        environment:
+          POSTGRES_DB: todos_java
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          
+        volumes:
+          - ./postgres-data:/var/lib/postgresql/db1
+          - ./init.sql:/docker-entrypoint-initdb.d/10-db.sql          
+          
+        networks:
+          - java-network
+        
+    web:
+        #build: .
+        image: spring
+        ports:
+            - "8080:8080"
+        depends_on:
+            - db
+        networks:
+          - java-network
+          
+networks:
+  java-network:
+    driver: bridge
+
+
+    

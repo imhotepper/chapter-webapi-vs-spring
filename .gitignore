@@ -5,6 +5,8 @@ webapi/.vs
 
 webapi/api/bin
 webapi/api/obj
+webapi/api/out
+webapi/api/.vscode
 
 webapi/tests/bin
 webapi/tests/obj

@@ -34,8 +34,15 @@ namespace api
             var conStr = Configuration.GetConnectionString("DefaultConnection");
             var pgConn = Environment.GetEnvironmentVariable("DATABASE_URL");
 
+Console.WriteLine("ENV pgConn: " + pgConn);
+
             if (!string.IsNullOrWhiteSpace(pgConn))
                 conStr = HerokuPGParser.ConnectionHelper.BuildExpectedConnectionString(pgConn);
+
+          if (string.IsNullOrWhiteSpace(conStr) && !string.IsNullOrWhiteSpace(pgConn))
+            conStr = pgConn;
+            
+Console.WriteLine("ENV connStr: " + conStr);
 
             services.AddDbContext<AppDb>(options =>options.UseNpgsql(conStr));
 
@@ -73,7 +80,7 @@ namespace api
 
             app.UseMvc();
 
-            // update database schema           
+            // update database schema
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
                 if (serviceScope.ServiceProvider.GetService<AppDb>() == null) return;
