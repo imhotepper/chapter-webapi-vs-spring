@@ -12,4 +12,4 @@ webapi/tests/bin
 webapi/tests/obj
 
 spring/target
-spring/postgres-data
+spring/postgres-data/
