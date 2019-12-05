@@ -11,6 +11,9 @@ WORKDIR /app
 COPY --from=MAVEN_BUILD /build/target/api-0.0.1-SNAPSHOT.jar /app/
 ENTRYPOINT ["java","-Dspring.profiles.active=prod ", "-jar", "api-0.0.1-SNAPSHOT.jar"]
 
+#RUN
+#docker build -t  spring . && docker run -p 8080:8080 spring
+
 
 # FROM openjdk:8-jdk-alpine
 # WORKDIR /usr/app

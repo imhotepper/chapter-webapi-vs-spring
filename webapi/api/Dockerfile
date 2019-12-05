@@ -16,6 +16,12 @@ WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "api.dll"]
 
+#RUN
+#docker build -t  webapi . && docker run -p 5000:80 webapi
+
+
+
+
 #test locally
 #docker build -t ct-webapi .
 #docker run -d -p 8080:80 --name webapi-ct cd-webapi
