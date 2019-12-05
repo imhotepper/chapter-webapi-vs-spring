@@ -17,6 +17,8 @@ COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "api.dll"]
 
 #RUN
+#docker run -p 5000:80 webapi
+#build
 #docker build -t  webapi . && docker run -p 5000:80 webapi
 
 
