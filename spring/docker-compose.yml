@@ -1,15 +1,16 @@
+
 version: "3"
 services:
     db:
         image: "postgres"
         environment:
-          POSTGRES_DB: todos_java
+          POSTGRES_DB: postgres
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
           
         volumes:
-          - ./postgres-data:/var/lib/postgresql/db1
-          - ./init.sql:/docker-entrypoint-initdb.d/10-db.sql          
+          - ./postgres-data:/var/lib/postgresql/data
+          #- ./init.sql:/docker-entrypoint-initdb.d/10-db.sql          
           
         networks:
           - java-network
@@ -21,6 +22,10 @@ services:
             - "8080:8080"
         depends_on:
             - db
+        environment: 
+          - SPRING_DATASOURCE_URL= jdbc:postgresql://db:5432/postgres
+          - SPRING_DATASOURCE_USERNAME=postgres
+          - SPRING_DATASOURCE_PASSWORD=postgres
         networks:
           - java-network
           
@@ -29,4 +34,7 @@ networks:
     driver: bridge
 
 
-    
+
+#RUN
+#docker-compose up
+
