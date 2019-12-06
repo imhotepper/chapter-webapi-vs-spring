@@ -3,7 +3,7 @@
 
 This is a prezentation about the 2 technologies and it's purpose is to higlight the similarities and differences between them.
 
-It also contains 2 projects with the same features for a better comparison.
+It also contains 2 projects with the same features for a better comparison. 
 
 Here are the projects runing live:
  * dotnet core 2/3 REST webapi <a href="http://ct-todos-cs.herokuapp.com/index.html" target="_blank"> .net core webapi link</a>
