@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Net;
+using api.jobs;
 using api.Middleware;
 using api.Model;
 using api.Servcies;
@@ -31,6 +32,8 @@ namespace api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHostedService<SimpleJob>();
+
             var conStr = Configuration.GetConnectionString("DefaultConnection");
             var pgConn = Environment.GetEnvironmentVariable("DATABASE_URL");
 
