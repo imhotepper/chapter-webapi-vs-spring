@@ -10,8 +10,8 @@ import java.util.Date;
 public class SimpleJob {
     //vod return type && no parameters
     //@Scheduled(cron = "0 15 10 15 * ?")
-    @Scheduled( fixedRate = 1000, initialDelay = 100)
+    @Scheduled( fixedRate = 5000, initialDelay = 100)
     public void Execute(){
-      //  System.out.println("Job executed at: " + new Date());
+        System.out.println("Job executed at: " + new Date());
     }
 }
