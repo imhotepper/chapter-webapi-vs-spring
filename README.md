@@ -3,6 +3,13 @@
 
 This is a prezentation about the 2 technologies and it's purpose is to higlight the similarities and differences between them.
 
+
+## Prezentation can be found here: <a href="https://slides.com/imhotepp/deck-fc6626/live" target="_blank"> Open slides</a>
+
+ ### Bitly short url: http://bit.ly/core-vs-spring
+
+ 
+ 
 It also contains 2 projects with the same features for a better comparison. 
 
 Here are the projects runing live:
@@ -16,9 +23,4 @@ Here are the projects runing live:
 
 
 
-## Prezentation can be found here: <a href="https://slides.com/imhotepp/deck-fc6626/live" target="_blank"> Open slides</a>
-
- ### Bitly short url: http://bit.ly/core-vs-spring
-
- 
  NJoy
