@@ -13,4 +13,12 @@ Here are the projects runing live:
  
  In each project there is a Dockerfile and a Docker-compose file so that it can be executed locally. The docker file is expecting a postgres installation to run on your localhost port 5432. For the docker-compose there is no other requirement than the docke to be prezent.
  
+
+
+
+## Prezentation can be found here: <a href="https://slides.com/imhotepp/deck-fc6626/live" target="_blank"> Open slides</a>
+
+ ### Bitly short url: http://bit.ly/core-vs-spring
+
+ 
  NJoy
