@@ -19,7 +19,7 @@ Here are the projects runing live:
  
  The keynote prezentation link is here: <a href="https://github.com/imhotepper/chapter-webapi-vs-spring/raw/master/Spring%20Boot%20vs%20Core%20WebApi.key" target="_blank"> open me </a>
  
- In each project there is a Dockerfile and a Docker-compose file so that it can be executed locally. The docker file is expecting a postgres installation to run on your localhost port 5432. For the docker-compose there is no other requirement than the docke to be prezent.
+ In each project there is a Dockerfile and a Docker-compose file so that it can be executed locally. The docker file is expecting a postgres installation to run on your localhost port 5432. For the docker-compose there is no other requirement than docker to be prezent.
  
 
 
