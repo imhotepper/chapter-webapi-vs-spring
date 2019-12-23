@@ -5,7 +5,7 @@ This is a prezentation about the 2 technologies and it's purpose is to higlight 
 
 The demo project is a Todos API with basic endpoints and a postgresql database. It exxplains the controller, model, service, validation, error handling, api to api call, scheduled jobs, testing, memory footprint and docker files.
 
-## Prezentation can be found here: <a href="https://slides.com/imhotepp/deck-fc6626/live" target="_blank"> Open slides</a>
+## Prezentation can be found here: <a href="https://slides.com/imhotepp/deck-fc6626" target="_blank"> Open slides</a>
 
  ### Bitly short url for all files: http://bit.ly/core-vs-spring
 
